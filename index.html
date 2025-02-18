@@ -8,7 +8,6 @@
     <title>SHAIL K PATEL - Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
     <link id="theme-stylesheet" rel="stylesheet" href="css/light-mode.css">
-    <script src="script.js"></script>
 
 </head>
 
@@ -29,7 +28,7 @@
         <div class="left-section">
             <img src="images/casual.jpg" alt="Casual Shail" class="profile-photo-left">
             <h1 class="name">SHAIL K PATEL</h1>
-            <h2 class="role">Machine Learning Engineer</h2>
+            <h2 class="role">Machine Learning Enthusiast</h2>
             <p class="motto">I code. I learn.<br>Sometimes, I even debug.</p>
             <nav>
                 <ul>
@@ -40,6 +39,9 @@
                     <li><a href="#certificate">Certificate</a></li>
                 </ul>
             </nav>
+            <br>
+            <br>
+            <button id="theme-toggle">Toggle Mode</button>
             <div class="social-media">
                 <a href="https://github.com" title="GitHub" target="_blank">
                     <img src="images/logo/github.jpg" alt="GitHub Logo" class="social-icon">
@@ -64,35 +66,48 @@
         </div>
 
 
-    <!-- About Section -->
-    <section class="section" id="about">
-        <div class="main-content">
-            <h1 id="section-title">About</h1>
-            <p id="typewriter-head">Hi! I am <span class="name">Shail K Patel</span></p >
-            <p id="typewriter-text"></p>
-        </div>
-    </section>
-
-
-
-
-    <!-- Projects Section -->
-    <section class="section" id="projects">
-        <div class="main-content">
-            <h1 id="section-title">Project</h1>
-            <button class="prev" disabled>Previous</button>
-            <button class="next">Next</button>
-            <h2>Project Title</h2>
-            <div class="project-details">
-                <p class="description">Project description...</p>
-                <img src="images/project1.jpg" alt="Project Screenshot">
+        <!-- About Section -->
+        <section class="section" id="about">
+            <div class="main-content">
+                <h1 id="section-title">About</h1>
+                <p id="typewriter-head">Hi! I am <span class="name">Shail K Patel</span></p >
+                <p id="typewriter-text"></p>
             </div>
-            <div class="tech-stack">
-                <a href="https://python.org" title="Python">Python</a>
-                <a href="https://numpy.org" title="NumPy">NumPy</a>
+        </section>
+
+
+
+
+        <!-- Projects Section -->
+        <section class="section" id="projects">
+            <div class="main-content">
+                <h1 id="section-title">Projects</h1>
+        
+                <div class="slideshow-container">
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">1 / 3</div>
+                        <img src="images/casual.jpg" style="width:60%" alt="a">
+                        <div class="text">Project - 1</div>
+                    </div>
+                    
+                    <div class="mySlides fade">
+                        <div class="numbertext">2 / 3</div>
+                        <img src="images/conf.png" style="width:60%" alt="a">
+                        <div class="text">Project - 2</div>
+                    </div>
+                    
+                    <div class="mySlides fade">
+                        <div class="numbertext">3 / 3</div>
+                        <img src="images/crazy.jpg" style="width:60%" alt="a">
+                        <div class="text">Project - 3</div>
+                    </div>
+                    
+                    <a class="prev" onclick="plusSlides(-1)">❮</a>
+                    <a class="next" onclick="plusSlides(1)">❯</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
     <!-- Skill Section -->
@@ -154,7 +169,7 @@
                     <span class="tooltip">MySQL</span>
                 </div>
                 <div class="skill" data-level="68%" onclick="window.open('https://www.postgresql.org', '_blank')">
-                    <img src="images/logo/postgresSQL.png" alt="PostGRE" class="icon">
+                    <img src="images/logo/postgressql.png" alt="PostGRE" class="icon">
                     <span class="tooltip">PostGRE</span>
                 </div>
                 <div class="skill" data-level="65%" onclick="window.open('https://www.java.com', '_blank')">
@@ -215,30 +230,15 @@
         </div>
     </section>
 
-
-    <!-- Certificate Section -->
-    <section class="section" id="certificate">
+    <!-- Testimonial Section -->
+    <section class="section" id="testimonial">
         <div class="main-content">
-            <h1 id="section-title">Certificate</h1>
+            <h1 id="section-title">Testimonial</h1>
             
-            <h3>Skills Learned:</h3>
-            <ul class="skills-list">
-                <li>Python</li>
-                <li>DBMS</li>
-                <li>Operating Systems</li>
-                <li>Probability and Statistics</li>
-                <li>Software Engineering</li>
-                <li>Data Structures</li>
-                <li>Java</li>
-                <li>Full-Stack Development</li>
-                <li>IoT</li>
-                <li>Physics</li>
-                <li>Fundamentals of Electronics and Electricals</li>
-                <li>Digital Electronics</li>
-            </ul>
         </div>
     </section>
 
+    <script src="script.js"></script>
 
 </body>
 </html>
