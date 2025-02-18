@@ -1,7 +1,27 @@
+/* Light Mode */
 :root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
     --heading-color: #209fb6;
-    --title-color: #209fb6;
+    --title-color: #000000;
     --role-color: #8f8f8f;
+    --subtle-bg: #332e2e00; /* Light grey */
+    --border-color: #e0e0e0;
+    --button-bg: #209fb6;
+    --button-text: #ffffff;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --heading-color: #23a7c2; /* Lighter cyan */
+    --title-color: #ffffff;
+    --role-color: #b0b0b0;
+    --subtle-bg: #2e2e2e; /* Dark grey */
+    --border-color: #333333;
+    --button-bg: #48c1d9;
+    --button-text: #121212;
 }
 
 /* Fonts */
@@ -29,6 +49,7 @@ body {
     padding: 0;
     overflow-x: hidden; /* Disable vertical scrolling */
     scroll-behavior: smooth; /* Smooth scrolling for transitions */
+    background-color: var(--bg-color);
 }
 
 ::-webkit-scrollbar {
@@ -58,6 +79,7 @@ html {
     font-size: max(5vw, 5vh);
     text-align: center;
     margin-bottom: 2vh;
+    color: var(--title-color);
 }
 
 
@@ -69,18 +91,16 @@ html {
     position: relative;
     display: inline-block;
     width: 100%; /* Ensures the container scales */
-    max-width: 20vw; /* Adjusted dynamically */
 }
 
 /* Profile photo styles */
 .profile-photo-landing {
-    width: 18vw; /* Scales dynamically */
-    height: auto;
+    width: 18rem; 
 }
 
 
 .name {
-    font-size: 6vw;
+    font-size: 3rem;
     font-weight: bold;
     font-family: 'Cabin Sketch', sans-serif;
     margin: 01vh 0;
@@ -100,11 +120,13 @@ html {
     font-size: 2vw;
     font-style: italic;
     margin: 1.5vh 0;
+    color: var(--subtle-bg);
 }
 
 .quote {
     font-size: 2vw;
     margin-top: 1.5vh;
+    color: var(--text-color);
 }
 
 /* Left Section (Fixed Sidebar) */
@@ -128,7 +150,7 @@ html {
 body.page-about .left-section,
 body.page-projects .left-section,
 body.page-skills .left-section,
-body.page-certificate .left-section,
+body.page-testimonial .left-section,
 body.page-education .left-section {
     display: flex; /* Show for specific pages */
 }
@@ -183,25 +205,38 @@ body.page-landing .go-to-top {
 
 .go-to-top {
     position: fixed;
-    bottom: 2vh;
-    right: 2vw;
+    bottom: 5rem;
+    right: 7.5rem;
     z-index: 1000;
     display: none; /* Default display */
 }
 
 .go-to-top img {
-    width: 6vw;
-    height: 6vw;
+    
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 0.2vw solid #222; /* Matches left section background */
 }
 
 .go-to-top img:hover {
     transform: scale(1.1);
     box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.5);
+}
+
+
+button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    background: var(--button-bg);
+    color: var(--button-text);
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+button:hover {
+    background: var(--heading-color);
 }
 
 /* Navigation Styles */
@@ -299,6 +334,7 @@ body.page-landing .go-to-top {
     margin-left: 5%;
     margin-right: 5%;
     font-family: 'Typewriter', sans-serif;
+    color: var(--text-color);
 }
 
 #typewriter-head {
@@ -309,9 +345,9 @@ body.page-landing .go-to-top {
     margin-left: 5%;
     margin-right: 5%;
     font-family: 'Typewriter', sans-serif;
+    color: var(--text-color);
+
 }
-
-
 
 
 #typewriter-head .name {
@@ -322,6 +358,208 @@ body.page-landing .go-to-top {
 
 
 
+
+/* End */
+
+
+/* Project section */
+/* Start */
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 30vw;
+    position: relative;
+    margin: auto;
+}
+
+/* Hide all slides by default */
+.mySlides {
+    display: none;
+}
+
+/* Show only the first slide */
+.mySlides:first-child {
+    display: block;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: 40px; 
+    height: 40px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: bold;
+    font-size: 2vw;
+    border-radius: 50%;
+    text-align: center;
+}
+
+    /* Position the "prev" button on the left */
+    .prev {
+        left: 10px;
+    }
+
+    /* Position the "next" button on the right */
+    .next {
+        right: 10px;
+    }
+
+/* On hover, add a black background color with transparency */
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from { opacity: 0.4; } 
+    to { opacity: 1; }
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .prev, .next, .text {
+        font-size: 11px;
+    }
+}
+
+
+
+/* End */
+
+/* Skill section */
+/* Start */
+
+/* Skills List Styling */
+.skills-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.skills-list li {
+    background-color: #221fca;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Skills */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2vw;
+    justify-content: center;
+}
+
+.skill {
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+}
+
+.skill .icon {
+    width: 6vw;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    position: relative;
+}
+
+.skill:hover .icon {
+    transform: scale(1.1);
+    opacity: 0.5;
+}
+
+.skill::before {
+    content: attr(data-level);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 6vw;
+    height: 6vw;
+    line-height: 6vw;
+    text-align: center;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+.skill:hover::before {
+    opacity: 1;
+}
+
+/* Tooltip Styling */
+.skill .tooltip {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 0.5vw;
+    border-radius: 0.5vw;
+    position: absolute;
+    bottom: -3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    font-size: 1vw;
+    white-space: nowrap;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.skill:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
 
 /* End */
 
@@ -396,6 +634,7 @@ body.page-landing .go-to-top {
     list-style: none;
     padding: 0;
     text-align: center;
+    background-color: inherit;
 }
 
 .college-skills-list.active {
@@ -435,123 +674,4 @@ body.page-landing .go-to-top {
 /* End */
 
 
-
-/* Skill section */
-/* Skills List Styling */
-.skills-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
-.skills-list li {
-    background-color: #221fca;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    color: #555;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-
-    .skills-list li {
-        padding: 8px 12px;
-        font-size: 0.8rem;
-    }
-
-    .college-logo {
-        width: 80px;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .skills-list {
-        gap: 8px;
-    }
-
-    .skills-list li {
-        font-size: 0.7rem;
-    }
-}
-
-/* End */
-
-/* Skills */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2vw;
-    justify-content: center;
-}
-
-.skill {
-    position: relative;
-    text-align: center;
-    cursor: pointer;
-}
-
-.skill .icon {
-    width: 5vw;
-    height: 5vw;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    position: relative;
-    z-index: 1;
-}
-
-.skill:hover .icon {
-    transform: scale(1.1);
-    opacity: 0.5;
-}
-
-.skill::before {
-    content: attr(data-level);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5vw;
-    font-weight: bold;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.7);
-    width: 6vw;
-    height: 6vw;
-    line-height: 6vw;
-    text-align: center;
-    border-radius: 50%;
-    opacity: 0;
-    z-index: 2;
-    transition: opacity 0.3s ease;
-}
-
-.skill:hover::before {
-    opacity: 1;
-}
-
-/* Tooltip Styling */
-.skill .tooltip {
-    visibility: hidden;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 0.5vw;
-    border-radius: 0.5vw;
-    position: absolute;
-    bottom: -3vh;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    font-size: 1vw;
-    white-space: nowrap;
-    transition: visibility 0.3s ease, opacity 0.3s ease;
-    opacity: 0;
-}
-
-.skill:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
-}
 
