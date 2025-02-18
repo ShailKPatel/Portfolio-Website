@@ -32,30 +32,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Flip Card Logic in About Section
-    // let flipState = 0; // 0 = photo, 1 = first text, 2 = second text
-    // const card = document.querySelector(".card"); // The card container
-    // const cardInner = document.querySelector(".card-inner"); // The flipping inner content
-
-
-
-    // card.addEventListener("click", () => {
-    //     if (flipState === 0) {
-    //         // Flip to first text
-    //         cardInner.classList.add("flipped-right");
-    //         flipState = 1;
-
-    //     } else if (flipState === 1) {
-    //         // Flip to second text
-    //         cardInner.classList.remove("flipped-right");
-    //         cardInner.classList.add("flipped-top");
-    //         flipState = 2;
-    //     } else if (flipState === 2) {
-    //         // Flip back to photo
-    //         cardInner.classList.remove("flipped-top");
-    //         flipState = 0;
-    //     }
-    // });
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
 
     // Project Navigation Logic
     let currentProjectIndex = 0;
@@ -106,13 +95,14 @@ function showSkills(sem) {
 
 
 const text = [
-    "I am a Machine Learning Enthusiast.",
-    "I am doing my Bachelor of Engineering in AI & ML from LJ University in Ahmedabad. I aspire to work on the bleeding edge of Machine Learning and am looking for work opportunities.",
-    "My goal is to work on real-world AI applications and contribute to innovative projects that leverage AI and Machine Learning for solving complex problems.",
-    "I am passionate about using AI for social good, such as improving healthcare, education, and environmental sustainability through cutting-edge technologies.",
-    "Currently, I am constantly learning new techniques and tools in AI to stay up-to-date with the latest advancements in the field.",
-    "Feel free to reach out if you're looking for a passionate and driven AI enthusiast to collaborate with on exciting projects."
+    "Machine Learning nerd with big dreams. 🤖",
+    "B.E. AI & ML @ LJ University, Ahmedabad. Still human (for now).",
+    "Obsessed with cutting-edge ML—because the future won’t build itself!",
+    "AI for social good? Count me in! Healthcare, education, sustainability—you name it.",
+    "Always learning, always coding, always caffeinated. ☕",
+    "Got a cool AI project? Let’s make some magic happen! ✨"
 ];
+
 
 let i = 0, j = 0;
 
@@ -140,4 +130,60 @@ document.addEventListener("DOMContentLoaded", function () {
     typewriterText.style.whiteSpace = "pre-wrap";  // Ensure text wraps correctly
     typewriterText.style.caretColor = "transparent"; // Hide the cursor
     typeWriter();
+});
+
+
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Function to navigate slides
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+// Function to display the correct slide
+function showSlides(n) {
+    let slides = document.getElementsByClassName("mySlides");
+    
+    if (n > slides.length) { 
+        slideIndex = 1; 
+    }
+    if (n < 1) { 
+        slideIndex = slides.length; 
+    }
+    
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+
+    slides[slideIndex - 1].style.display = "block";  
+}
+
+// Ensure only the first slide is visible on load
+document.addEventListener("DOMContentLoaded", () => {
+    showSlides(slideIndex);
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("theme-toggle");
+
+    if (!toggleButton) {
+        console.error("Theme toggle button not found!");
+        return;
+    }
+
+    function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }
+
+    const systemPreference = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    const savedTheme = localStorage.getItem("theme") || systemPreference;
+    setTheme(savedTheme);
+
+    toggleButton.addEventListener("click", () => {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        setTheme(currentTheme === "dark" ? "light" : "dark");
+    });
 });
