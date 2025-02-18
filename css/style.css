@@ -11,19 +11,6 @@
     --button-text: #ffffff;
 }
 
-/* Dark Mode */
-[data-theme="dark"] {
-    --bg-color: #000000;
-    --text-color: #ffffff;
-    --heading-color: #23a7c2; /* Lighter cyan */
-    --title-color: #ffffff;
-    --role-color: #b0b0b0;
-    --subtle-bg: #2e2e2e; /* Dark grey */
-    --border-color: #333333;
-    --button-bg: #48c1d9;
-    --button-text: #121212;
-}
-
 /* Fonts */
 
 @font-face {
