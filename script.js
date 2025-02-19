@@ -224,7 +224,14 @@ const testimonialManager = new OrderedHashMap(5);
 function addNewTestimonial() {
     const name = document.getElementById("testimonial-writer").value.trim();
     const message = document.getElementById("testimonial-message").value.trim();
-    const recaptchaResponse = grecaptcha.getResponse(); // Get reCAPTCHA response
+
+    // Ensure reCAPTCHA API is loaded before calling it
+    if (typeof grecaptcha === "undefined") {
+        alert("reCAPTCHA is not loaded yet. Please try again.");
+        return;
+    }
+
+    const recaptchaResponse = grecaptcha.getResponse(); // Get reCAPTCHA token
 
     if (!name || !message) {
         alert("Please enter your name and testimonial.");
@@ -248,6 +255,7 @@ function addNewTestimonial() {
     // Reset reCAPTCHA after submission
     grecaptcha.reset();
 }
+
 
 
 
