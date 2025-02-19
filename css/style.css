@@ -675,3 +675,101 @@ button:hover {
 
 
 
+/* Testimonial Section */
+.testimonial-section {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Testimonials Grid Layout */
+#testimonial-list {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr); /* 5 equal rows */
+    gap: 15px;
+    justify-content: center;
+    overflow: hidden; /* Prevent scrolling */
+
+}
+
+/* Ensure all testimonials fit within the section */
+.testimonial-box {
+    background: #fff;
+    padding: 15px;
+    border-left: 5px solid #007BFF;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100px;
+}
+
+/* Limit section height to prevent scrolling */
+#testimonial {
+    height: 100vh; /* Full-screen height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+/* Quote Styling */
+.testimonial-message {
+    font-style: italic;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Author Styling */
+.testimonial-author {
+    font-weight: bold;
+    text-align: right;
+}
+
+/* No Testimonials Message */
+.no-testimonials {
+    color: gray;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Testimonial Form */
+.testimonial-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background: #007BFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+label {
+    font-size: 14px;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
