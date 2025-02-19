@@ -689,13 +689,18 @@ button:hover {
 /* Testimonials Grid Layout */
 #testimonial-list {
     display: grid;
-    grid-template-rows: repeat(5, 1fr); /* 5 equal rows */
+    grid-template-columns: repeat(auto-fit, minmax(50vw));
     gap: 15px;
     justify-content: center;
     overflow: hidden; /* Prevent scrolling */
-
 }
 
+/* Limit to 3 testimonials on tablets & smaller */
+@media (max-width: 768px) {
+    #testimonial-list .testimonial-box:nth-child(n+4) { 
+        display: none; 
+    }
+}
 /* Ensure all testimonials fit within the section */
 .testimonial-box {
     background: #fff;
@@ -706,7 +711,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 100px;
+    min-height: 30vw;
 }
 
 /* Limit section height to prevent scrolling */
