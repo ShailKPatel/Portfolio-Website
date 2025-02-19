@@ -225,16 +225,27 @@ function addNewTestimonial() {
     const name = document.getElementById("testimonial-writer").value.trim();
     const message = document.getElementById("testimonial-message").value.trim();
 
-    // Ensure reCAPTCHA API is loaded before calling it
+    // Ensure reCAPTCHA API is loaded
     if (typeof grecaptcha === "undefined") {
         alert("reCAPTCHA is not loaded yet. Please try again.");
         return;
     }
 
-    const recaptchaResponse = grecaptcha.getResponse(); // Get reCAPTCHA token
-
+    // Get reCAPTCHA token
+    const recaptchaResponse = grecaptcha.getResponse();
+    
     if (!name || !message) {
         alert("Please enter your name and testimonial.");
+        return;
+    }
+
+    if (name.length > 10) {
+        alert("Name must not exceed 10 characters.");
+        return;
+    }
+
+    if (message.length > 50) {
+        alert("Testimonial must not exceed 50 characters.");
         return;
     }
 
@@ -243,19 +254,37 @@ function addNewTestimonial() {
         return;
     }
 
-    const userEmail = prompt("Enter your email to confirm:");
-    if (userEmail !== "shailpatel.conect@gmail.com") {
-        alert("Email verification failed.");
-        return;
-    }
+    // Send reCAPTCHA token to backend for verification
+    fetch("https://www.google.com/recaptcha/api/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=YOUR_SECRET_KEY&response=${recaptchaResponse}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const userEmail = prompt("Enter your email to confirm:");
+            if (userEmail !== "shailpatel.connect@gmail.com") {
+                alert("Email verification failed.");
+                return;
+            }
 
-    testimonialManager.add(name, message);
-    renderTestimonials();
+            testimonialManager.add(name, message);
+            renderTestimonials();
 
-    // Reset reCAPTCHA after submission
-    grecaptcha.reset();
+            // Reset form & reCAPTCHA
+            document.getElementById("testimonial-writer").value = "";
+            document.getElementById("testimonial-message").value = "";
+            grecaptcha.reset();
+        } else {
+            alert("reCAPTCHA verification failed. Please try again.");
+        }
+    })
+    .catch(error => {
+        console.error("reCAPTCHA Error:", error);
+        alert("An error occurred. Please try again.");
+    });
 }
-
 
 
 
