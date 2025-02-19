@@ -32,19 +32,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Initialize Swiper
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
+    document.addEventListener("DOMContentLoaded", function () {
+        new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
     });
+    
 
     // Project Navigation Logic
     let currentProjectIndex = 0;
@@ -189,3 +192,88 @@ document.addEventListener("DOMContentLoaded", () => {
         setTheme(currentTheme === "dark" ? "light" : "dark");
     });
 });
+
+
+
+class OrderedHashMap {
+    constructor(maxSize) {
+        this.maxSize = maxSize;
+        this.data = [];
+    }
+
+    add(key, value) {
+        if (this.data.some(item => item.key === key)) {
+            return; // Prevent duplicate keys
+        }
+
+        if (this.data.length >= this.maxSize) {
+            this.data.pop(); // Remove the oldest entry when exceeding max size
+        }
+
+        this.data.unshift({ key, value }); // Add new entry at the beginning
+    }
+
+    getAll() {
+        return this.data;
+    }
+}
+
+// Create a new testimonial manager with max 5 entries
+const testimonialManager = new OrderedHashMap(5);
+
+function addNewTestimonial() {
+    const name = document.getElementById("testimonial-writer").value.trim();
+    const message = document.getElementById("testimonial-message").value.trim();
+    const recaptchaResponse = grecaptcha.getResponse(); // Get reCAPTCHA response
+
+    if (!name || !message) {
+        alert("Please enter your name and testimonial.");
+        return;
+    }
+
+    if (!recaptchaResponse) {
+        alert("Please verify that you are not a robot.");
+        return;
+    }
+
+    const userEmail = prompt("Enter your email to confirm:");
+    if (userEmail !== "shailpatel.conect@gmail.com") {
+        alert("Email verification failed.");
+        return;
+    }
+
+    testimonialManager.add(name, message);
+    renderTestimonials();
+
+    // Reset reCAPTCHA after submission
+    grecaptcha.reset();
+}
+
+
+
+function renderTestimonials() {
+    const list = document.getElementById("testimonial-list");
+    list.innerHTML = ""; // Clear existing testimonials
+
+    const testimonials = testimonialManager.getAll();
+
+    if (testimonials.length === 0) {
+        list.innerHTML = `<p class="no-testimonials">No Testimonials yet.</p>`;
+        return;
+    }
+
+    testimonials.forEach(({ key, value }) => {
+        const box = document.createElement("div");
+        box.classList.add("testimonial-box");
+
+        box.innerHTML = `
+            <p class="testimonial-message">"${value}"</p>
+            <p class="testimonial-author">— ${key}</p>
+        `;
+
+        list.appendChild(box);
+    });
+}
+
+// Initialize empty state
+renderTestimonials();
