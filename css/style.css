@@ -4,6 +4,7 @@
     --text-color: #000000;
     --heading-color: #209fb6;
     --title-color: #000000;
+    --motto-color: #007cc4;
     --role-color: #8f8f8f;
     --subtle-bg: #332e2e00; /* Light grey */
     --border-color: #e0e0e0;
@@ -17,6 +18,7 @@
     --text-color: #ffffff;
     --heading-color: #23a7c2; /* Lighter cyan */
     --title-color: #ffffff;
+    --motto-color: #007cc4;
     --role-color: #b0b0b0;
     --subtle-bg: #2e2e2e; /* Dark grey */
     --border-color: #333333;
@@ -39,6 +41,11 @@
 @font-face {
     font-family: 'Typewriter';
     src: url('../fonts/Typewriter/typewriternormal.ttf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Motto';
+    src: url('../fonts/motto-cufonfonts/Mottoitalic.otf') format('opentype');
 }
 
 
@@ -86,48 +93,59 @@ html {
 /* Landing Area */
 /* Start */
 
+#landing {
+    width: 100%;
+    height: auto;
+}
+
 /* Styles for the profile container */
 .profile-container {
     position: relative;
     display: inline-block;
-    width: 100%; /* Ensures the container scales */
+    width: 100%;
 }
 
 /* Profile photo styles */
 .profile-photo-landing {
-    width: 18rem; 
+    margin-top: 5%;
+    width: 15vw; 
 }
 
 
 .name {
-    font-size: 3rem;
+    font-size: 8vw;
     font-weight: bold;
     font-family: 'Cabin Sketch', sans-serif;
-    margin: 01vh 0;
+    margin: 1vh;
     color: var(--heading-color);
 }
 
 
 .role {
-    font-size: 3vw;
-    margin: 1vh 0;
+    font-size: 4vw;
+    margin: 1vh;
     font-family: 'SF', sans-serif;
     color: var(--role-color);
 }
 
 
-.motto {
-    font-size: 2vw;
+.mymotto {
+    text-align: left;
+    font-size: 0.75vw;
+    font-family: 'Motto', sans-serif;
     font-style: italic;
     margin: 1.5vh 0;
-    color: var(--subtle-bg);
+    color: var(--motto-color);
 }
 
-.quote {
-    font-size: 2vw;
+.myquote {
+    font-size: 2.2vw;
     margin-top: 1.5vh;
-    color: var(--text-color);
+    font-family: 'SF', sans-serif;
+    font-style: italic;
+    color: var(--title-color);
 }
+
 
 /* Left Section (Fixed Sidebar) */
 .left-section {
@@ -244,8 +262,10 @@ button:hover {
     list-style: none;
     padding: 0;
     margin: 0;
-    text-align: center;
+    text-align: left;
+    font-size: 1vw;
 }
+
 
 .left-section nav ul li {
     margin: 1vh 0;
@@ -337,16 +357,16 @@ button:hover {
     color: var(--text-color);
 }
 
+
 #typewriter-head {
     font-size: 1.5vw;
     white-space: nowrap;
     overflow: hidden;
-    animation: 0.8s infinite;
     margin-left: 5%;
+    animation: 0.8s infinite;
     margin-right: 5%;
     font-family: 'Typewriter', sans-serif;
     color: var(--text-color);
-
 }
 
 
@@ -355,7 +375,6 @@ button:hover {
     font-size: 6vh;
 
 }
-
 
 
 
@@ -677,11 +696,10 @@ button:hover {
 
 /* Testimonial Section */
 .testimonial-section {
-    width: 50%;
-    margin: 50px auto;
-    padding: 20px;
+    margin: auto;
+    padding: auto;
     background: white;
-    border-radius: 8px;
+    border-radius: 3px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -689,8 +707,10 @@ button:hover {
 /* Testimonials Grid Layout */
 #testimonial-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50vw));
-    gap: 15px;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    grid-template-rows: repeat(2, auto);  /* 2 rows, height auto */
+    padding: 5%;
+    gap: 5% 5%;
     justify-content: center;
     overflow: hidden; /* Prevent scrolling */
 }
@@ -704,15 +724,19 @@ button:hover {
 /* Ensure all testimonials fit within the section */
 .testimonial-box {
     background: #fff;
-    padding: 15px;
+    padding: auto;
     border-left: 5px solid #007BFF;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 30vw;
+    padding-right: 5%;
+    gap: 5% 5%;
+    align-content: center;
+
 }
+
 
 /* Limit section height to prevent scrolling */
 #testimonial {
@@ -729,6 +753,7 @@ button:hover {
     font-style: italic;
     font-size: 16px;
     margin-bottom: 10px;
+    padding: 5%;
 }
 
 /* Author Styling */
@@ -740,8 +765,7 @@ button:hover {
 /* No Testimonials Message */
 .no-testimonials {
     color: gray;
-    font-size: 14px;
-    text-align: center;
+    font-size: 1vw;
 }
 
 /* Testimonial Form */
@@ -756,19 +780,6 @@ input, textarea {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-}
-
-button {
-    background: #007BFF;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background: #0056b3;
 }
 
 label {
