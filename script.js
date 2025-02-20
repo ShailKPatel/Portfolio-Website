@@ -218,22 +218,13 @@ class OrderedHashMap {
     }
 }
 
-// Create a new testimonial manager with max 5 entries
-const testimonialManager = new OrderedHashMap(5);
+// Create a new testimonial manager with max 6 entries
+const testimonialManager = new OrderedHashMap(6);
 
 function addNewTestimonial() {
     const name = document.getElementById("testimonial-writer").value.trim();
     const message = document.getElementById("testimonial-message").value.trim();
 
-    // Ensure reCAPTCHA API is loaded
-    if (typeof grecaptcha === "undefined") {
-        alert("reCAPTCHA is not loaded yet. Please try again.");
-        return;
-    }
-
-    // Get reCAPTCHA token
-    const recaptchaResponse = grecaptcha.getResponse();
-    
     if (!name || !message) {
         alert("Please enter your name and testimonial.");
         return;
@@ -249,42 +240,20 @@ function addNewTestimonial() {
         return;
     }
 
-    if (!recaptchaResponse) {
-        alert("Please verify that you are not a robot.");
+    const userEmail = prompt("Enter your email to confirm:");
+    if (userEmail !== "shailpatel.connect@gmail.com") {
+        alert("Email verification failed.");
         return;
     }
 
-    // Send reCAPTCHA token to backend for verification
-    fetch("https://www.google.com/recaptcha/api/siteverify", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `secret=YOUR_SECRET_KEY&response=${recaptchaResponse}`
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            const userEmail = prompt("Enter your email to confirm:");
-            if (userEmail !== "shailpatel.connect@gmail.com") {
-                alert("Email verification failed.");
-                return;
-            }
+    testimonialManager.add(name, message);
+    renderTestimonials();
 
-            testimonialManager.add(name, message);
-            renderTestimonials();
-
-            // Reset form & reCAPTCHA
-            document.getElementById("testimonial-writer").value = "";
-            document.getElementById("testimonial-message").value = "";
-            grecaptcha.reset();
-        } else {
-            alert("reCAPTCHA verification failed. Please try again.");
-        }
-    })
-    .catch(error => {
-        console.error("reCAPTCHA Error:", error);
-        alert("An error occurred. Please try again.");
-    });
+    // Reset form
+    document.getElementById("testimonial-writer").value = "";
+    document.getElementById("testimonial-message").value = "";
 }
+
 
 
 
@@ -296,7 +265,20 @@ function renderTestimonials() {
 
     if (testimonials.length === 0) {
         list.innerHTML = `<p class="no-testimonials">No Testimonials yet.</p>`;
+        list.style = `display: block`;
         return;
+    }
+    else{
+        list.innerHTML = "";
+        list.style.display = "grid";
+        list.style.gridTemplateColumns = "repeat(3, 1fr)";
+        list.style.gridTemplateRows = "repeat(2, auto)";
+        list.style.padding = "5%";
+        list.style.gap = "5%";
+        list.style.justifyContent = "center";
+        list.style.overflow = "hidden";
+        list.style.fontSize = "1vw";  // Font size based on viewport width
+        list.style.fontFamily = "Arial, sans-serif";  // Font family
     }
 
     testimonials.forEach(({ key, value }) => {
